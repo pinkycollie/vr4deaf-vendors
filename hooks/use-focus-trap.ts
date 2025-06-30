@@ -2,47 +2,40 @@
 
 import { useEffect, useRef } from "react"
 
-export function useFocusTrap(isActive = true) {
-  const containerRef = useRef<HTMLDivElement>(null)
+export function useFocusTrap(isActive: boolean) {
+  const containerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (!isActive) return
+    if (!isActive || !containerRef.current) return
 
     const container = containerRef.current
-    if (!container) return
-
-    // Find all focusable elements
     const focusableElements = container.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     )
-
-    if (focusableElements.length === 0) return
-
     const firstElement = focusableElements[0] as HTMLElement
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
 
-    // Focus the first element when the trap is activated
-    firstElement.focus()
-
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleTabKey = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return
 
-      // If shift + tab and on first element, move to last element
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault()
-        lastElement.focus()
-      }
-      // If tab and on last element, move to first element
-      else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault()
-        firstElement.focus()
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement?.focus()
+          e.preventDefault()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement?.focus()
+          e.preventDefault()
+        }
       }
     }
 
-    container.addEventListener("keydown", handleKeyDown)
+    container.addEventListener("keydown", handleTabKey)
+    firstElement?.focus()
 
     return () => {
-      container.removeEventListener("keydown", handleKeyDown)
+      container.removeEventListener("keydown", handleTabKey)
     }
   }, [isActive])
 

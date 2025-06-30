@@ -3,25 +3,24 @@
 import { useEffect, useState } from "react"
 
 interface AnnouncerProps {
-  messages: string[]
-  ariaLive?: "polite" | "assertive"
+  message: string
+  priority?: "polite" | "assertive"
 }
 
-export default function ScreenReaderAnnouncer({ messages, ariaLive = "polite" }: AnnouncerProps) {
-  const [currentMessage, setCurrentMessage] = useState("")
+export default function ScreenReaderAnnouncer({ message, priority = "polite" }: AnnouncerProps) {
+  const [announcement, setAnnouncement] = useState("")
 
   useEffect(() => {
-    // Get the last message from the array
-    const message = messages[messages.length - 1]
-
-    if (message && message !== currentMessage) {
-      setCurrentMessage(message)
+    if (message) {
+      setAnnouncement(message)
+      const timer = setTimeout(() => setAnnouncement(""), 1000)
+      return () => clearTimeout(timer)
     }
-  }, [messages, currentMessage])
+  }, [message])
 
   return (
-    <div aria-live={ariaLive} aria-atomic="true" className="sr-only">
-      {currentMessage}
+    <div aria-live={priority} aria-atomic="true" className="sr-only" role="status">
+      {announcement}
     </div>
   )
 }

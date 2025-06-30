@@ -1,8 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import type React from "react"
 
-import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
@@ -23,9 +23,16 @@ import {
   FileText,
   TrendingUp,
   DollarSign,
+  CheckCircle,
+  Clock,
+  Brain,
+  Target,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VRContacts from "./vr-contacts"
+import UnifiedAssistant from "./ai-assistant"
+import BusinessInsightsPanel from "./business-insights-panel"
+import ScreenReaderAnnouncer from "./screen-reader-announcer"
 
 type CheckpointItem = {
   id: string
@@ -67,7 +74,117 @@ type ClientProfile = {
   industry: string
 }
 
+interface Milestone {
+  id: string
+  title: string
+  description: string
+  status: "not-started" | "in-progress" | "completed"
+  fee: number
+  requirements: string[]
+  estimatedDays: number
+  vrApprovalRequired: boolean
+}
+
+const vrMilestones: Milestone[] = [
+  {
+    id: "ssesp",
+    title: "SSESP - Self-Employment Feasibility Study",
+    description: "Comprehensive assessment of business viability and client readiness",
+    status: "completed",
+    fee: 153,
+    requirements: ["Business idea assessment", "Market research", "Financial feasibility", "Skills evaluation"],
+    estimatedDays: 30,
+    vrApprovalRequired: true,
+  },
+  {
+    id: "startup",
+    title: "Start-Up Phase",
+    description: "Business plan development and initial setup",
+    status: "in-progress",
+    fee: 765,
+    requirements: ["Complete business plan", "Legal structure setup", "Initial funding secured", "Permits obtained"],
+    estimatedDays: 60,
+    vrApprovalRequired: true,
+  },
+  {
+    id: "maintenance",
+    title: "Maintenance Phase",
+    description: "Ongoing business support and development",
+    status: "not-started",
+    fee: 1530,
+    requirements: [
+      "Monthly progress reports",
+      "Financial tracking",
+      "Marketing implementation",
+      "Customer acquisition",
+    ],
+    estimatedDays: 90,
+    vrApprovalRequired: true,
+  },
+  {
+    id: "stability",
+    title: "Stability Phase",
+    description: "Business stabilization and growth planning",
+    status: "not-started",
+    fee: 2295,
+    requirements: ["Consistent revenue stream", "Growth strategy", "Operational efficiency", "Market expansion"],
+    estimatedDays: 120,
+    vrApprovalRequired: true,
+  },
+  {
+    id: "closure",
+    title: "Closure Phase",
+    description: "Successful transition to independent operation",
+    status: "not-started",
+    fee: 3032,
+    requirements: [
+      "Business sustainability",
+      "Independent operation",
+      "Final assessment",
+      "Case closure documentation",
+    ],
+    estimatedDays: 30,
+    vrApprovalRequired: true,
+  },
+]
+
 export default function UnifiedMilestoneTracker() {
+  const [activeTab, setActiveTab] = useState("milestones")
+  const [announcement, setAnnouncement] = useState("")
+  const [milestones, setMilestones] = useState(vrMilestones)
+
+  const completedMilestones = milestones.filter((m) => m.status === "completed").length
+  const totalProgress = (completedMilestones / milestones.length) * 100
+  const totalEarned = milestones.filter((m) => m.status === "completed").reduce((sum, m) => sum + m.fee, 0)
+  const totalPotential = milestones.reduce((sum, m) => sum + m.fee, 0)
+
+  const handleMilestoneUpdate = (milestoneId: string, newStatus: Milestone["status"]) => {
+    setMilestones((prev) => prev.map((m) => (m.id === milestoneId ? { ...m, status: newStatus } : m)))
+    setAnnouncement(`Milestone ${milestoneId} updated to ${newStatus}`)
+  }
+
+  const getStatusIcon = (status: Milestone["status"]) => {
+    switch (status) {
+      case "completed":
+        return <CheckCircle className="h-5 w-5 text-green-600" />
+      case "in-progress":
+        return <Clock className="h-5 w-5 text-yellow-600" />
+      default:
+        return <Circle className="h-5 w-5 text-gray-400" />
+    }
+  }
+
+  const getStatusColor = (status: Milestone["status"]) => {
+    switch (status) {
+      case "completed":
+        return "bg-green-100 border-green-300"
+      case "in-progress":
+        return "bg-yellow-100 border-yellow-300"
+      default:
+        return "bg-gray-50 border-gray-200"
+    }
+  }
+
   const [clientProfile, setClientProfile] = useState<ClientProfile>({
     serviceType: "",
     state: "",
@@ -714,6 +831,224 @@ export default function UnifiedMilestoneTracker() {
 
   return (
     <div className="space-y-8">
+      {/* Service Selection & Client Profile */}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 p-4">
+        <ScreenReaderAnnouncer message={announcement} />
+
+        <div className="max-w-7xl mx-auto space-y-6">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
+              VR4Deaf Business Development Platform
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Empowering deaf entrepreneurs through VR services and AI-powered business development with Claude AI and
+              Business Magician integration
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <Badge variant="secondary" className="bg-purple-100 text-purple-800">
+                <Brain className="h-3 w-3 mr-1" />
+                Claude AI Powered
+              </Badge>
+              <Badge variant="outline" className="border-blue-300 text-blue-700">
+                Business Magician API
+              </Badge>
+              <Badge variant="outline" className="border-green-300 text-green-700">
+                VR Compliant
+              </Badge>
+            </div>
+          </div>
+
+          {/* Progress Overview */}
+          <Card className="border-2 border-purple-200">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <CardTitle className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Target className="h-5 w-5" />
+                  Progress Overview
+                </span>
+                <Badge variant="secondary">
+                  {completedMilestones}/{milestones.length} Completed
+                </Badge>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">${totalEarned.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground">Earned Revenue</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">{Math.round(totalProgress)}%</div>
+                  <div className="text-sm text-muted-foreground">Overall Progress</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-600">${totalPotential.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground">Total Potential</div>
+                </div>
+              </div>
+              <Progress value={totalProgress} className="h-3" />
+            </CardContent>
+          </Card>
+
+          {/* Main Content Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            <TabsList className="grid w-full grid-cols-4 bg-white border-2 border-purple-200">
+              <TabsTrigger value="milestones" className="data-[state=active]:bg-purple-100">
+                <Target className="h-4 w-4 mr-2" />
+                Milestones
+              </TabsTrigger>
+              <TabsTrigger value="insights" className="data-[state=active]:bg-blue-100">
+                <Brain className="h-4 w-4 mr-2" />
+                AI Insights
+              </TabsTrigger>
+              <TabsTrigger value="contacts" className="data-[state=active]:bg-green-100">
+                <Users className="h-4 w-4 mr-2" />
+                VR Contacts
+              </TabsTrigger>
+              <TabsTrigger value="resources" className="data-[state=active]:bg-yellow-100">
+                <FileText className="h-4 w-4 mr-2" />
+                Resources
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="milestones" className="space-y-4">
+              {milestones.map((milestone, index) => (
+                <Card key={milestone.id} className={`border-l-4 ${getStatusColor(milestone.status)}`}>
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start gap-3">
+                        {getStatusIcon(milestone.status)}
+                        <div>
+                          <CardTitle className="text-lg">{milestone.title}</CardTitle>
+                          <p className="text-sm text-muted-foreground mt-1">{milestone.description}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex items-center gap-2 mb-2">
+                          <DollarSign className="h-4 w-4 text-green-600" />
+                          <span className="font-semibold">${milestone.fee.toLocaleString()}</span>
+                        </div>
+                        <Badge variant={milestone.status === "completed" ? "default" : "secondary"}>
+                          {milestone.status.replace("-", " ")}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <h4 className="text-sm font-medium mb-2">Requirements</h4>
+                        <ul className="space-y-1">
+                          {milestone.requirements.map((req, idx) => (
+                            <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                              {req}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span>Estimated Duration:</span>
+                          <span className="font-medium">{milestone.estimatedDays} days</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span>VR Approval Required:</span>
+                          <Badge
+                            variant={milestone.vrApprovalRequired ? "destructive" : "secondary"}
+                            className="text-xs"
+                          >
+                            {milestone.vrApprovalRequired ? "Yes" : "No"}
+                          </Badge>
+                        </div>
+                        {milestone.status !== "completed" && (
+                          <div className="flex gap-2 mt-4">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleMilestoneUpdate(milestone.id, "in-progress")}
+                              disabled={milestone.status === "in-progress"}
+                            >
+                              Start
+                            </Button>
+                            <Button
+                              size="sm"
+                              onClick={() => handleMilestoneUpdate(milestone.id, "completed")}
+                              disabled={milestone.status === "not-started"}
+                            >
+                              Complete
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </TabsContent>
+
+            <TabsContent value="insights">
+              <BusinessInsightsPanel />
+            </TabsContent>
+
+            <TabsContent value="contacts">
+              <VRContacts />
+            </TabsContent>
+
+            <TabsContent value="resources" className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5" />
+                    Resource Library
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <h3 className="font-medium">VR Forms & Documents</h3>
+                      <div className="space-y-2">
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          SSESP Application Form
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          Business Plan Template
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          Financial Tracking Sheet
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="font-medium">Accessibility Resources</h3>
+                      <div className="space-y-2">
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          ASL Business Communication Guide
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          Assistive Technology Catalog
+                        </Button>
+                        <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                          <FileText className="h-4 w-4 mr-2" />
+                          Deaf Entrepreneur Network
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        <UnifiedAssistant />
+      </div>
       {/* Service Selection & Client Profile */}
       <Card className="border-2 border-dashed border-primary/20">
         <CardHeader>

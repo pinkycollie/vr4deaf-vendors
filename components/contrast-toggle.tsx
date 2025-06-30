@@ -2,45 +2,37 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Sun, Moon } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Contrast } from "lucide-react"
 
-export function ContrastToggle() {
-  const [isHighContrast, setIsHighContrast] = useState(false)
-  const { theme, setTheme } = useTheme()
+export default function ContrastToggle() {
+  const [highContrast, setHighContrast] = useState(false)
 
   useEffect(() => {
-    // Check if high contrast mode is already enabled
-    const isHighContrastEnabled = document.documentElement.classList.contains("high-contrast-mode")
-    setIsHighContrast(isHighContrastEnabled)
+    const saved = localStorage.getItem("high-contrast")
+    if (saved) {
+      setHighContrast(JSON.parse(saved))
+    }
   }, [])
 
-  const toggleHighContrast = () => {
-    const newState = !isHighContrast
-    setIsHighContrast(newState)
-    document.documentElement.classList.toggle("high-contrast-mode", newState)
-  }
+  useEffect(() => {
+    localStorage.setItem("high-contrast", JSON.stringify(highContrast))
+    if (highContrast) {
+      document.documentElement.classList.add("high-contrast")
+    } else {
+      document.documentElement.classList.remove("high-contrast")
+    }
+  }, [highContrast])
 
   return (
-    <div className="fixed top-4 right-4 flex items-center gap-2 z-20">
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-      >
-        {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-      </Button>
-
-      <Button
-        variant={isHighContrast ? "default" : "outline"}
-        size="sm"
-        onClick={toggleHighContrast}
-        aria-pressed={isHighContrast}
-        aria-label="Toggle high contrast mode"
-      >
-        {isHighContrast ? "High Contrast: On" : "High Contrast: Off"}
-      </Button>
-    </div>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => setHighContrast(!highContrast)}
+      aria-pressed={highContrast}
+      aria-label={`${highContrast ? "Disable" : "Enable"} high contrast mode`}
+    >
+      <Contrast className="h-4 w-4 mr-2" />
+      {highContrast ? "Normal" : "High"} Contrast
+    </Button>
   )
 }

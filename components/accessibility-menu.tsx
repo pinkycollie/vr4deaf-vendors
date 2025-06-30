@@ -1,124 +1,118 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Settings } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Slider } from "@/components/ui/slider"
+import { Accessibility, X, Volume2, Eye, MousePointer } from "lucide-react"
 
 export default function AccessibilityMenu() {
   const [isOpen, setIsOpen] = useState(false)
-  const { setTheme, theme } = useTheme()
-  const [highContrast, setHighContrast] = useState(false)
-  const [largeText, setLargeText] = useState(false)
-  const [reducedMotion, setReducedMotion] = useState(false)
+  const [settings, setSettings] = useState({
+    highContrast: false,
+    largeText: false,
+    reducedMotion: false,
+    textToSpeech: false,
+    fontSize: [100],
+  })
 
-  const toggleHighContrast = (checked: boolean) => {
-    setHighContrast(checked)
-    if (checked) {
-      document.documentElement.classList.add("high-contrast-mode")
-    } else {
-      document.documentElement.classList.remove("high-contrast-mode")
+  useEffect(() => {
+    const saved = localStorage.getItem("accessibility-settings")
+    if (saved) {
+      setSettings(JSON.parse(saved))
     }
-  }
+  }, [])
 
-  const toggleLargeText = (checked: boolean) => {
-    setLargeText(checked)
-    if (checked) {
-      document.documentElement.classList.add("large-text-mode")
-    } else {
-      document.documentElement.classList.remove("large-text-mode")
-    }
-  }
+  useEffect(() => {
+    localStorage.setItem("accessibility-settings", JSON.stringify(settings))
 
-  const toggleReducedMotion = (checked: boolean) => {
-    setReducedMotion(checked)
-    if (checked) {
-      document.documentElement.classList.add("reduced-motion")
-    } else {
-      document.documentElement.classList.remove("reduced-motion")
-    }
+    // Apply settings
+    const root = document.documentElement
+    root.classList.toggle("high-contrast", settings.highContrast)
+    root.classList.toggle("large-text", settings.largeText)
+    root.classList.toggle("reduced-motion", settings.reducedMotion)
+    root.style.fontSize = `${settings.fontSize[0]}%`
+  }, [settings])
+
+  const updateSetting = (key: string, value: any) => {
+    setSettings((prev) => ({ ...prev, [key]: value }))
   }
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <>
       <Button
-        onClick={() => setIsOpen(!isOpen)}
-        className="rounded-full h-14 w-14 shadow-lg"
-        aria-label="Accessibility settings"
-        aria-expanded={isOpen}
+        variant="outline"
+        size="sm"
+        onClick={() => setIsOpen(true)}
+        className="fixed top-4 right-4 z-40"
+        aria-label="Open accessibility menu"
       >
-        <Settings className="h-6 w-6" aria-hidden="true" />
+        <Accessibility className="h-4 w-4 mr-2" />
+        Accessibility
       </Button>
 
       {isOpen && (
-        <Card className="absolute bottom-16 left-0 w-72 shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-lg">Accessibility</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="high-contrast" className="cursor-pointer">
-                High contrast
-              </Label>
-              <Switch
-                id="high-contrast"
-                checked={highContrast}
-                onCheckedChange={toggleHighContrast}
-                aria-label="Toggle high contrast mode"
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <Label htmlFor="large-text" className="cursor-pointer">
-                Large text
-              </Label>
-              <Switch
-                id="large-text"
-                checked={largeText}
-                onCheckedChange={toggleLargeText}
-                aria-label="Toggle large text mode"
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <Label htmlFor="reduced-motion" className="cursor-pointer">
-                Reduced motion
-              </Label>
-              <Switch
-                id="reduced-motion"
-                checked={reducedMotion}
-                onCheckedChange={toggleReducedMotion}
-                aria-label="Toggle reduced motion mode"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label className="block mb-2">Theme</Label>
-              <div className="flex gap-2">
-                <Button
-                  variant={theme === "light" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setTheme("light")}
-                  className="flex-1"
-                >
-                  Light
-                </Button>
-                <Button
-                  variant={theme === "dark" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setTheme("dark")}
-                  className="flex-1"
-                >
-                  Dark
-                </Button>
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <Accessibility className="h-5 w-5" />
+                Accessibility Options
+              </CardTitle>
+              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} aria-label="Close accessibility menu">
+                <X className="h-4 w-4" />
+              </Button>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4" />
+                  <span className="text-sm">High Contrast</span>
+                </div>
+                <Switch
+                  checked={settings.highContrast}
+                  onCheckedChange={(checked) => updateSetting("highContrast", checked)}
+                />
               </div>
-            </div>
-          </CardContent>
-        </Card>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <MousePointer className="h-4 w-4" />
+                  <span className="text-sm">Large Text</span>
+                </div>
+                <Switch
+                  checked={settings.largeText}
+                  onCheckedChange={(checked) => updateSetting("largeText", checked)}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Volume2 className="h-4 w-4" />
+                  <span className="text-sm">Reduced Motion</span>
+                </div>
+                <Switch
+                  checked={settings.reducedMotion}
+                  onCheckedChange={(checked) => updateSetting("reducedMotion", checked)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Font Size: {settings.fontSize[0]}%</label>
+                <Slider
+                  value={settings.fontSize}
+                  onValueChange={(value) => updateSetting("fontSize", value)}
+                  min={75}
+                  max={150}
+                  step={25}
+                  className="w-full"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
-    </div>
+    </>
   )
 }
