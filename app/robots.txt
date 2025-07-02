@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Main sitemap
+Sitemap: https://vr4deaf.org/sitemap.xml
+
+# State-specific sitemaps
+Sitemap: https://texas.vr4deaf.org/sitemap.xml
+Sitemap: https://california.vr4deaf.org/sitemap.xml
+Sitemap: https://florida.vr4deaf.org/sitemap.xml
+Sitemap: https://newyork.vr4deaf.org/sitemap.xml
+Sitemap: https://illinois.vr4deaf.org/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow important pages
+Allow: /automation
+Allow: /services
+Allow: /vendor-services
+Allow: /docs/

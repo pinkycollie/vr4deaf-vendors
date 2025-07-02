@@ -1,0 +1,47 @@
+{
+  "state": "Texas",
+  "abbreviation": "TX",
+  "videoUrl": "/videos/texas-asl.mp4",
+  "summary": "Texas VR4Deaf program provides comprehensive job readiness, ASL interpreting services, and deaf-first guidance for job seekers across the Lone Star State. Our AI-powered platform connects you with VR counselors, employers, and training programs specifically designed for the deaf community.",
+  "vrOffices": [
+    {
+      "name": "Texas Workforce Commission - VR Services",
+      "address": "101 E 15th St, Austin, TX 78778",
+      "phone": "(512) 424-4000",
+      "aslServices": true,
+      "specializations": ["Job Placement", "Skills Training", "Self-Employment"]
+    },
+    {
+      "name": "Houston VR Office",
+      "address": "2002 W Grand Pkwy S, Katy, TX 77449",
+      "phone": "(281) 579-6000",
+      "aslServices": true,
+      "specializations": ["Technology Training", "Healthcare Careers"]
+    }
+  ],
+  "fundingLimits": {
+    "jobTraining": "$15000",
+    "equipment": "$5000",
+    "selfEmployment": "$25000"
+  },
+  "resources": [
+    { "name": "Texas Deaf VR Coordinator", "url": "mailto:vr-tx@vr4deaf.org" },
+    { "name": "Book VR Consultation", "url": "https://calendly.com/vr4deaf/tx" },
+    { "name": "ASL Interpreter Request", "url": "/request-interpreter?state=tx" },
+    { "name": "Job Search Portal", "url": "/jobs?state=tx" }
+  ],
+  "successStories": [
+    {
+      "name": "Maria S.",
+      "outcome": "Software Developer at Dell",
+      "timeline": "6 months",
+      "funding": "$12,000"
+    },
+    {
+      "name": "James R.",
+      "outcome": "Started Consulting Business",
+      "timeline": "8 months",
+      "funding": "$18,000"
+    }
+  ]
+}

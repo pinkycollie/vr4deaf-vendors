@@ -1,0 +1,47 @@
+{
+  "state": "California",
+  "abbreviation": "CA",
+  "videoUrl": "/videos/california-asl.mp4",
+  "summary": "California VR4Deaf offers the most comprehensive vocational rehabilitation services in the nation, with extensive funding, diverse training programs, and strong partnerships with tech companies throughout Silicon Valley and beyond.",
+  "vrOffices": [
+    {
+      "name": "California Department of Rehabilitation - Los Angeles",
+      "address": "721 Capitol Mall, Sacramento, CA 95814",
+      "phone": "(916) 324-1313",
+      "aslServices": true,
+      "specializations": ["Technology", "Entertainment", "Healthcare"]
+    },
+    {
+      "name": "San Francisco Bay Area VR Office",
+      "address": "455 Golden Gate Ave, San Francisco, CA 94102",
+      "phone": "(415) 557-1800",
+      "aslServices": true,
+      "specializations": ["Tech Startups", "Digital Media", "Engineering"]
+    }
+  ],
+  "fundingLimits": {
+    "jobTraining": "$20000",
+    "equipment": "$8000",
+    "selfEmployment": "$35000"
+  },
+  "resources": [
+    { "name": "California Deaf VR Coordinator", "url": "mailto:vr-ca@vr4deaf.org" },
+    { "name": "Book VR Consultation", "url": "https://calendly.com/vr4deaf/ca" },
+    { "name": "Silicon Valley Job Network", "url": "/jobs?state=ca&industry=tech" },
+    { "name": "Entertainment Industry Access", "url": "/jobs?state=ca&industry=entertainment" }
+  ],
+  "successStories": [
+    {
+      "name": "David L.",
+      "outcome": "UX Designer at Google",
+      "timeline": "4 months",
+      "funding": "$15,000"
+    },
+    {
+      "name": "Sarah M.",
+      "outcome": "Film Production Company Owner",
+      "timeline": "12 months",
+      "funding": "$28,000"
+    }
+  ]
+}
