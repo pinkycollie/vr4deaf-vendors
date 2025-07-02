@@ -1,268 +1,141 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Users, FileText, Award, BarChart3, CheckCircle, Clock, AlertCircle } from "lucide-react"
-import { Bell, AlertTriangle, Calendar } from "lucide-react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CalendarDays } from "lucide-react"
+import { MainNav } from "@/components/main-nav"
+import { SiteFooter } from "@/components/site-footer"
 
-export default function VendorDashboard() {
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-blue-900">VR4Deaf Vendor Portal</h1>
-              <Badge variant="secondary">TWS-VRS Certified</Badge>
+    <div className="flex min-h-screen flex-col">
+      <header className="sticky top-0 z-40 border-b bg-background">
+        <div className="container flex h-16 items-center">
+          <MainNav />
+        </div>
+      </header>
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-primary/5">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+              <div className="space-y-4">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Texas Workforce Solutions-Vocational Rehabilitation Services
+                </h1>
+                <p className="text-muted-foreground md:text-xl">
+                  Helping Texans with disabilities prepare for, find, and keep employment
+                </p>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                  <Button asChild size="lg">
+                    <Link href="/interest-form">Start My VR Interest Form</Link>
+                  </Button>
+                  <Button variant="outline" size="lg">
+                    <Link href="/services">Learn More</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="mx-auto lg:mx-0 relative">
+                <img
+                  src="/placeholder.svg?height=550&width=550"
+                  alt="People in a workplace setting"
+                  className="rounded-lg object-cover"
+                  width={550}
+                  height={550}
+                />
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <nav className="flex space-x-4">
-                <Link href="/applications" className="text-gray-600 hover:text-blue-600">
-                  Applications
-                </Link>
-                <Link href="/clients" className="text-gray-600 hover:text-blue-600">
-                  Clients
-                </Link>
-                <Link href="/credentials" className="text-gray-600 hover:text-blue-600">
-                  Credentials
-                </Link>
-                <Link href="/reports" className="text-gray-600 hover:text-blue-600">
-                  Reports
-                </Link>
-              </nav>
-              <Button variant="outline" size="sm" asChild className="relative">
-                <Link href="/notifications">
-                  <Bell className="h-4 w-4" />
-                  <Badge
-                    variant="destructive"
-                    className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
+          </div>
+        </section>
+
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How We Can Help</h2>
+                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                  Our services are designed to help people with disabilities achieve their employment goals
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 lg:gap-12 mt-8">
+              <div className="flex flex-col items-center space-y-2 rounded-lg p-4 border">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <svg
+                    className="h-6 w-6 text-primary"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    5
-                  </Badge>
-                </Link>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Vocational Assessment</h3>
+                <p className="text-center text-muted-foreground">
+                  Identify your strengths, abilities, and interests to find the right career path
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-2 rounded-lg p-4 border">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <svg
+                    className="h-6 w-6 text-primary"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Job Placement</h3>
+                <p className="text-center text-muted-foreground">
+                  Get help finding and applying for jobs that match your skills and accommodations
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-2 rounded-lg p-4 border">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <svg
+                    className="h-6 w-6 text-primary"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 3v12" />
+                    <path d="m8 11 4 4 4-4" />
+                    <path d="M8 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Training & Education</h3>
+                <p className="text-center text-muted-foreground">
+                  Access training programs and educational opportunities to build your skills
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center mt-8">
+              <Button asChild variant="outline">
+                <Link href="/interest-form">Start My VR Interest Form</Link>
               </Button>
             </div>
           </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome, Acme Rehabilitation Services</h2>
-          <p className="text-gray-600">
-            Manage your VR services, clients, and compliance reporting in one unified platform.
-          </p>
-        </div>
-
-        {/* Critical Alerts */}
-        <div className="space-y-4 mb-8">
-          <Alert variant="destructive">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Urgent: Insurance Expiring Soon</AlertTitle>
-            <AlertDescription>
-              Your Professional Liability Insurance expires in 15 days (Feb 15, 2024).
-              <Link href="/credentials" className="underline ml-1">
-                Update now
-              </Link>
-            </AlertDescription>
-          </Alert>
-
-          <Alert>
-            <Calendar className="h-4 w-4" />
-            <AlertTitle>Report Due Tomorrow</AlertTitle>
-            <AlertDescription>
-              Monthly VR Services Report for January 2024 is due tomorrow (Feb 5, 2024).
-              <Link href="/reports" className="underline ml-1">
-                Generate report
-              </Link>
-            </AlertDescription>
-          </Alert>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Active Clients</p>
-                  <p className="text-3xl font-bold text-blue-600">24</p>
-                </div>
-                <Users className="h-8 w-8 text-blue-500" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Pending Applications</p>
-                  <p className="text-3xl font-bold text-orange-600">3</p>
-                </div>
-                <FileText className="h-8 w-8 text-orange-500" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Credentials Status</p>
-                  <p className="text-3xl font-bold text-green-600">Valid</p>
-                </div>
-                <Award className="h-8 w-8 text-green-500" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Monthly Reports</p>
-                  <p className="text-3xl font-bold text-purple-600">12</p>
-                </div>
-                <BarChart3 className="h-8 w-8 text-purple-500" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Recent Applications */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle>Recent Client Applications</CardTitle>
-              <CardDescription>Latest VR service applications requiring your attention</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {[
-                  {
-                    name: "Sarah Johnson",
-                    service: "ASL Interpretation",
-                    status: "pending",
-                    date: "2024-01-15",
-                    priority: "high",
-                  },
-                  {
-                    name: "Michael Chen",
-                    service: "Job Coaching",
-                    status: "approved",
-                    date: "2024-01-14",
-                    priority: "medium",
-                  },
-                  {
-                    name: "Emily Rodriguez",
-                    service: "Assistive Technology",
-                    status: "review",
-                    date: "2024-01-13",
-                    priority: "low",
-                  },
-                ].map((application, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                    <div className="flex-1">
-                      <h4 className="font-semibold">{application.name}</h4>
-                      <p className="text-sm text-gray-600">{application.service}</p>
-                      <p className="text-xs text-gray-500">{application.date}</p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Badge
-                        variant={
-                          application.priority === "high"
-                            ? "destructive"
-                            : application.priority === "medium"
-                              ? "default"
-                              : "secondary"
-                        }
-                      >
-                        {application.priority}
-                      </Badge>
-                      <div className="flex items-center">
-                        {application.status === "approved" && <CheckCircle className="h-4 w-4 text-green-500" />}
-                        {application.status === "pending" && <Clock className="h-4 w-4 text-orange-500" />}
-                        {application.status === "review" && <AlertCircle className="h-4 w-4 text-blue-500" />}
-                        <span className="ml-1 text-sm capitalize">{application.status}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4">
-                <Button asChild className="w-full">
-                  <Link href="/applications">View All Applications</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Quick Actions */}
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/vendor-signup">New Vendor Registration</Link>
-                </Button>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/credentials/upload">Upload Credentials</Link>
-                </Button>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/clients/new">Add New Client</Link>
-                </Button>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/reports/generate">Generate VR Report</Link>
-                </Button>
-                <Button asChild className="w-full" variant="outline">
-                  <Link href="/calendar-sync">
-                    <CalendarDays className="w-4 h-4 mr-2" />
-                    Sync Calendar
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Compliance Status</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">ASL Certification</span>
-                    <Badge variant="default">Valid</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Background Check</span>
-                    <Badge variant="default">Current</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Insurance</span>
-                    <Badge variant="secondary">Expires 30 days</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">VR Training</span>
-                    <Badge variant="default">Complete</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Calendar Sync</span>
-                    <Badge variant="default">Active</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        </section>
       </main>
+      <SiteFooter />
     </div>
   )
 }
