@@ -13,7 +13,7 @@ export function MainNav() {
     <div className="mr-4 flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
         <Icons.logo className="h-6 w-6" />
-        <span className="hidden font-bold sm:inline-block">360 Business Magician</span>
+        <span className="hidden font-bold sm:inline-block">VR4DEAF.org</span>
       </Link>
       <nav className="flex items-center space-x-6 text-sm font-medium">
         <Link
@@ -32,7 +32,16 @@ export function MainNav() {
             pathname === "/services" ? "text-foreground" : "text-foreground/60",
           )}
         >
-          Services
+          VR Services
+        </Link>
+        <Link
+          href="/asl-resources"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/asl-resources" ? "text-foreground" : "text-foreground/60",
+          )}
+        >
+          ASL Resources
         </Link>
         <Link
           href="/about"
@@ -50,7 +59,7 @@ export function MainNav() {
             pathname === "/interest-form" ? "text-foreground" : "text-foreground/60",
           )}
         >
-          VR Interest Form
+          Start My VR Journey
         </Link>
         <Link
           href="/contact"

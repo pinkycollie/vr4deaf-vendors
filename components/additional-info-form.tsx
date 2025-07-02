@@ -12,10 +12,14 @@ interface AdditionalInfoFormProps {
 }
 
 const referralSources = [
+  { value: "deaf-community", label: "Deaf Community Member" },
+  { value: "deaf-organization", label: "Deaf Organization" },
+  { value: "asl-interpreter", label: "ASL Interpreter" },
+  { value: "vr-counselor", label: "VR Counselor" },
   { value: "friend", label: "Friend or Family Member" },
   { value: "doctor", label: "Doctor or Healthcare Provider" },
   { value: "school", label: "School or Educational Institution" },
-  { value: "employer", label: "Employer" },
+  { value: "deaf-mentor", label: "Deaf Business Mentor" },
   { value: "social-services", label: "Social Services Agency" },
   { value: "online", label: "Online Search" },
   { value: "social-media", label: "Social Media" },
@@ -80,9 +84,10 @@ export function AdditionalInfoForm({ form }: AdditionalInfoFormProps) {
                   <div className="space-y-1 leading-none">
                     <FormLabel>Consent to Contact*</FormLabel>
                     <FormDescription>
-                      I consent to be contacted by Texas Workforce Solutions-Vocational Rehabilitation Services
-                      regarding my interest in VR services. I understand that submitting this form does not guarantee
-                      eligibility for services.
+                      I consent to be contacted by VR4DEAF and Texas Workforce Solutions-Vocational Rehabilitation
+                      Services regarding my interest in self-employment services. I understand that communication can be
+                      provided in ASL, written format, or with interpreters as needed. Submitting this form does not
+                      guarantee eligibility for services.
                     </FormDescription>
                   </div>
                 </FormItem>

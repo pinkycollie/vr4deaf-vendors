@@ -12,10 +12,12 @@ interface EmploymentInfoFormProps {
 
 const employmentStatuses = [
   { value: "unemployed", label: "Unemployed" },
+  { value: "underemployed", label: "Underemployed" },
   { value: "employed-full-time", label: "Employed Full-Time" },
   { value: "employed-part-time", label: "Employed Part-Time" },
-  { value: "self-employed", label: "Self-Employed" },
+  { value: "self-employed", label: "Currently Self-Employed" },
   { value: "student", label: "Student" },
+  { value: "exploring-entrepreneurship", label: "Exploring Entrepreneurship" },
   { value: "retired", label: "Retired" },
 ]
 
@@ -58,9 +60,10 @@ export function EmploymentInfoForm({ form }: EmploymentInfoFormProps) {
               name="employmentGoals"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>What are your employment goals?*</FormLabel>
+                  <FormLabel>What are your entrepreneurship and self-employment goals?*</FormLabel>
                   <FormDescription>
-                    Please describe the type of work you are interested in and any specific career goals you have.
+                    Describe the type of business you want to start, your entrepreneurial interests, and how
+                    self-employment aligns with your strengths as a Deaf individual.
                   </FormDescription>
                   <FormControl>
                     <Textarea

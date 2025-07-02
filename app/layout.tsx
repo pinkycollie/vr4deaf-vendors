@@ -6,8 +6,9 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VR Interest Form | Texas Workforce Solutions",
-  description: "Submit your interest in Texas Workforce Solutions-Vocational Rehabilitation (VR) Services",
+  title: "VR4DEAF | Empowering Deaf Entrepreneurs in Texas",
+  description:
+    "DEAF FIRST platform connecting Deaf individuals with vocational rehabilitation services, business mentors, and entrepreneurship opportunities through Texas Workforce Solutions.",
     generator: 'v0.dev'
 }
 

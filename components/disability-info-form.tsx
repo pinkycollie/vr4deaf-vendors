@@ -9,14 +9,17 @@ interface DisabilityInfoFormProps {
 }
 
 const disabilityTypes = [
+  { id: "deaf", label: "Deaf" },
+  { id: "hard-of-hearing", label: "Hard of Hearing" },
+  { id: "deafblind", label: "DeafBlind" },
   { id: "physical", label: "Physical disability" },
   { id: "visual", label: "Visual impairment" },
-  { id: "hearing", label: "Hearing impairment" },
   { id: "cognitive", label: "Cognitive disability" },
   { id: "mental", label: "Mental health condition" },
   { id: "learning", label: "Learning disability" },
   { id: "developmental", label: "Developmental disability" },
   { id: "chronic", label: "Chronic health condition" },
+  { id: "multiple", label: "Multiple disabilities" },
   { id: "other", label: "Other" },
 ]
 
@@ -72,9 +75,13 @@ export function DisabilityInfoForm({ form }: DisabilityInfoFormProps) {
               name="disabilityDescription"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>How does your disability affect your ability to work?*</FormLabel>
+                  <FormLabel>
+                    How does your disability or communication needs affect your ability to work in traditional
+                    employment?*
+                  </FormLabel>
                   <FormDescription>
-                    Please describe the challenges you face in finding or maintaining employment due to your disability.
+                    Please describe the barriers you face in conventional workplaces and how self-employment might
+                    better suit your needs and strengths.
                   </FormDescription>
                   <FormControl>
                     <Textarea placeholder="Please describe..." className="min-h-[120px]" {...field} />

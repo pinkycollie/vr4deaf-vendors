@@ -11,43 +11,47 @@ export function FormSuccess() {
           <CheckCircle className="h-12 w-12 text-green-600" />
         </div>
 
-        <h2 className="text-2xl font-bold mb-2">Thank You for Your Interest!</h2>
+        <h2 className="text-2xl font-bold mb-2">Welcome to the VR4DEAF Community!</h2>
 
-        <p className="text-lg mb-6">Your information has been successfully submitted.</p>
+        <p className="text-lg mb-6">Your entrepreneurship journey application has been successfully submitted.</p>
 
         <div className="bg-slate-50 p-6 rounded-lg mb-6 max-w-xl">
-          <h3 className="font-semibold mb-3">What happens next?</h3>
+          <h3 className="font-semibold mb-3">Your DEAF FIRST Journey Begins:</h3>
           <ol className="text-left space-y-2">
             <li className="flex items-start">
               <span className="text-green-500 font-bold mr-2">1.</span>
               <span>
-                A VR staff member will contact you within 3-5 business days to discuss your interest in VR services.
+                A Deaf-friendly VR counselor will contact you within 3-5 business days using your preferred
+                communication method.
               </span>
             </li>
             <li className="flex items-start">
               <span className="text-green-500 font-bold mr-2">2.</span>
-              <span>You will receive a Google Calendar invitation for an initial meeting with a VR counselor.</span>
+              <span>
+                You'll receive a consultation invitation that can include ASL interpretation or written communication as
+                needed.
+              </span>
             </li>
             <li className="flex items-start">
               <span className="text-green-500 font-bold mr-2">3.</span>
               <span>
-                The meeting will take place via Google Meet. You can join from your computer or mobile device without
-                installing any software.
+                Your initial meeting will focus on your entrepreneurial goals and how VR4DEAF can support your
+                self-employment journey.
               </span>
             </li>
             <li className="flex items-start">
               <span className="text-green-500 font-bold mr-2">4.</span>
               <span>
-                During this meeting, the counselor will explain the VR process and help determine if you are eligible
-                for services.
+                We'll connect you with Deaf business mentors and ASL-accessible training resources tailored to your
+                business interests.
               </span>
             </li>
           </ol>
         </div>
 
         <p className="text-muted-foreground">
-          If you have any questions, please call our toll-free number at{" "}
-          <span className="font-medium">1-800-123-4567</span>.
+          Questions? Contact us at <span className="font-medium">support@vr4deaf.org</span> or call/text{" "}
+          <span className="font-medium">1-800-VR4DEAF</span>.
         </p>
       </CardContent>
 

@@ -3,8 +3,9 @@ import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
 
 export const metadata = {
-  title: "VR Interest Form | 360 Business Magician",
-  description: "Submit your interest in Texas Workforce Solutions-Vocational Rehabilitation (VR) Services",
+  title: "Start Your Entrepreneurship Journey | VR4DEAF",
+  description:
+    "Begin your path to self-employment with VR4DEAF's specialized vocational rehabilitation services designed for the Deaf community in Texas.",
 }
 
 export default function InterestFormPage() {

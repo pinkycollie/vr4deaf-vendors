@@ -17,17 +17,18 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="space-y-4">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Texas Workforce Solutions-Vocational Rehabilitation Services
+                  VR4DEAF: Empowering Deaf Entrepreneurs Through Self-Employment
                 </h1>
                 <p className="text-muted-foreground md:text-xl">
-                  Helping Texans with disabilities prepare for, find, and keep employment
+                  DEAF FIRST platform connecting Deaf individuals with vocational rehabilitation services, business
+                  mentors, and entrepreneurship opportunities in Texas
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button asChild size="lg">
-                    <Link href="/interest-form">Start My VR Interest Form</Link>
+                    <Link href="/interest-form">Start My Entrepreneurship Journey</Link>
                   </Button>
                   <Button variant="outline" size="lg">
-                    <Link href="/services">Learn More</Link>
+                    <Link href="/services">Explore VR Services</Link>
                   </Button>
                 </div>
               </div>
@@ -48,9 +49,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How We Can Help</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How VR4DEAF Helps</h2>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                  Our services are designed to help people with disabilities achieve their employment goals
+                  Our DEAF FIRST approach ensures services are designed for Deaf entrepreneurs, not adapted from
+                  hearing-centric systems
                 </p>
               </div>
             </div>
@@ -72,9 +74,9 @@ export default function Home() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Vocational Assessment</h3>
+                <h3 className="text-xl font-bold">Business Assessment</h3>
                 <p className="text-center text-muted-foreground">
-                  Identify your strengths, abilities, and interests to find the right career path
+                  Identify your entrepreneurial strengths and business interests with Deaf-accessible evaluation tools
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 rounded-lg p-4 border">
@@ -97,9 +99,9 @@ export default function Home() {
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Job Placement</h3>
+                <h3 className="text-xl font-bold">Mentor Matching</h3>
                 <p className="text-center text-muted-foreground">
-                  Get help finding and applying for jobs that match your skills and accommodations
+                  Connect with successful Deaf entrepreneurs and business coaches who understand your journey
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-2 rounded-lg p-4 border">
@@ -121,15 +123,15 @@ export default function Home() {
                     <path d="M8 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Training & Education</h3>
+                <h3 className="text-xl font-bold">ASL Business Training</h3>
                 <p className="text-center text-muted-foreground">
-                  Access training programs and educational opportunities to build your skills
+                  Access comprehensive business training delivered in American Sign Language
                 </p>
               </div>
             </div>
             <div className="flex justify-center mt-8">
               <Button asChild variant="outline">
-                <Link href="/interest-form">Start My VR Interest Form</Link>
+                <Link href="/interest-form">Start My Entrepreneurship Journey</Link>
               </Button>
             </div>
           </div>
