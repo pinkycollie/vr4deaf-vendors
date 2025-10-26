@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "VR4Deaf - Vocational Rehabilitation Business Development Platform",
   description:
     "Empowering deaf entrepreneurs through VR services and AI-powered business development with Claude AI and Business Magician integration",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({

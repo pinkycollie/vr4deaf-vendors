@@ -75,7 +75,7 @@ class Config:
     CORS_ORIGINS = [
         'https://vr4deaf.org',
         'https://*.vr4deaf.org',
-        'https://generator.360magicians.com'
+        'https://ideagenerator.360magicians.com'
     ]
     
     # AI/ML configuration
